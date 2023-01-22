@@ -7,9 +7,6 @@ require('gitsigns').setup({
   preview_config = {
     border = 'none',
   },
-  yadm = {
-    enable = true,
-  },
 })
 
 require("which-key").register({
