@@ -1,6 +1,7 @@
 require("nvim-tree").setup {
   renderer = {
     icons = {
+      webdev_colors = false,
       show = {
         file = true,
         folder = true,

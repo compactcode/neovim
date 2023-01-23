@@ -46,6 +46,18 @@ return require("packer").startup(function(use)
   }
 
   use {
+    'akinsho/bufferline.nvim',
+    requires = {
+      { "shaunsingh/nord.nvim" },
+      { 'nvim-tree/nvim-web-devicons' },
+    },
+    after = "nord.nvim",
+    config = function()
+      require("plugins.bufferline")
+    end
+  }
+
+  use {
     "neovim/nvim-lspconfig",
     requires = {
       "folke/neodev.nvim",
@@ -72,7 +84,7 @@ return require("packer").startup(function(use)
     "hoob3rt/lualine.nvim",
     requires = {
       { "shaunsingh/nord.nvim" },
-      { "kyazdani42/nvim-web-devicons", opt = true }
+      { "nvim-tree/nvim-web-devicons" }
     },
     after = "nord.nvim",
     config = function()
@@ -84,7 +96,7 @@ return require("packer").startup(function(use)
     "kyazdani42/nvim-tree.lua",
     requires = {
       { "folke/which-key.nvim" },
-      { "kyazdani42/nvim-web-devicons", opt = true }
+      { "nvim-tree/nvim-web-devicons" }
     },
     config = function()
       require("plugins.nvim-tree")
@@ -117,7 +129,7 @@ return require("packer").startup(function(use)
     requires = {
       { "nvim-lua/plenary.nvim" },
       { "folke/which-key.nvim" },
-      { "kyazdani42/nvim-web-devicons", opt = true }
+      { "nvim-tree/nvim-web-devicons" }
     },
     config = function()
       require("plugins.telescope")
