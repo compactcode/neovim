@@ -181,6 +181,7 @@ return require("packer").startup(function(use)
     end
   }
 
+  use { "stevearc/dressing.nvim" }
   use { "kevinhwang91/nvim-bqf" }
   use { "slim-template/vim-slim", }
   use { "tpope/vim-repeat", }
