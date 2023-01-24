@@ -69,6 +69,13 @@ return require("packer").startup(function(use)
   }
 
   use {
+    "jose-elias-alvarez/null-ls.nvim",
+    config = function()
+      require("plugins.null-ls")
+    end
+  }
+
+  use {
     "nvim-treesitter/nvim-treesitter",
     requires = {
       { "nvim-treesitter/nvim-treesitter-textobjects" },

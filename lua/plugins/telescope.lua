@@ -55,7 +55,6 @@ require("which-key").register({
     },
     l = {
       name = "+lsp",
-      a = { "<cmd>Telescope lsp_code_actions<cr>", "List code actions" },
       d = { "<cmd>Telescope lsp_definitions<cr>", "Goto definition" },
       l = { "<cmd>Telescope lsp_references<cr>", "Find references" },
     },
