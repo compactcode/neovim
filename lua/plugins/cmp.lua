@@ -47,9 +47,14 @@ cmp.setup({
     end,
   },
   formatting = {
-    format = require('lspkind').cmp_format(),
+    format = require("lspkind").cmp_format({
+      mode = "symbol",
+      max_width = 50,
+      symbol_map = { Copilot = "" }
+    }),
   },
   sources = cmp.config.sources({
+    { name = 'copilot' },
     { name = 'nvim_lsp' },
     { name = 'vsnip' },
     {

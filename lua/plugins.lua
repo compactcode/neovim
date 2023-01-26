@@ -124,7 +124,27 @@ return require("packer").startup(function(use)
 
   use {
     "hrsh7th/vim-vsnip",
-    requires = { "rafamadriz/friendly-snippets" },
+    requires = {
+      "rafamadriz/friendly-snippets",
+    },
+  }
+
+  use {
+    "zbirenbaum/copilot.lua",
+    config = function()
+      require("plugins.copilot")
+    end,
+  }
+
+  use {
+    "zbirenbaum/copilot-cmp",
+    requires = { {
+      "zbirenbaum/copilot-cmp",
+    } },
+    after = { "copilot.lua" },
+    config = function ()
+      require("plugins.copilot-cmp")
+    end
   }
 
   use {
@@ -136,6 +156,7 @@ return require("packer").startup(function(use)
       { "hrsh7th/cmp-cmdline" },
       { "hrsh7th/cmp-vsnip" },
       { "hrsh7th/vim-vsnip" },
+      { "zbirenbaum/copilot-cmp" },
       { "onsails/lspkind-nvim" },
     },
     config = function()
