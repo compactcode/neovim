@@ -38,6 +38,18 @@ return require("packer").startup(function(use)
     end
   }
 
+  -- toggle single-> multiline styles of code
+  use {
+    'Wansmer/treesj',
+    requires = {
+      "nvim-treesitter/nvim-treesitter",
+      "folke/which-key.nvim",
+    },
+    config = function()
+      require('plugins.treesj')
+    end,
+  }
+
   use {
     "lukas-reineke/indent-blankline.nvim",
     config = function()
