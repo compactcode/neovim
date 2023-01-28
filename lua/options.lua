@@ -20,6 +20,7 @@ vim.opt.termguicolors = true
 
 -- Reduce delay for background updates.
 vim.opt.updatetime = 500
+
 -- ************************************************************
 --  Editing
 -- ************************************************************
@@ -37,6 +38,9 @@ vim.opt.swapfile = false
 
 -- Allow buffers to be backgrounded without saving
 vim.opt.hidden = true
+
+-- Use the system clipboard.
+vim.opt.clipboard = "unnamedplus"
 
 -- ************************************************************
 -- Search
