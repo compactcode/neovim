@@ -3,6 +3,9 @@ require("neotest").setup({
     require("neotest-plenary"),
     require("neotest-rspec"),
   },
+  quickfix = {
+    enabled = false,
+  },
 })
 
 require("which-key").register({
