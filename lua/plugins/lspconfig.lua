@@ -4,7 +4,7 @@ local lsp = require('lspconfig')
 
 lsp.rust_analyzer.setup {}
 lsp.solargraph.setup {}
-lsp.sumneko_lua.setup {}
+lsp.lua_ls.setup {}
 
 require("which-key").register({
   ["<leader>"] = {
