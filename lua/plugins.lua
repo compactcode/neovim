@@ -130,6 +130,8 @@ return require("packer").startup(function(use)
 
   use {
     "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
     config = function()
       require("plugins.copilot")
     end,
@@ -137,9 +139,6 @@ return require("packer").startup(function(use)
 
   use {
     "zbirenbaum/copilot-cmp",
-    requires = { {
-      "zbirenbaum/copilot-cmp",
-    } },
     after = { "copilot.lua" },
     config = function ()
       require("plugins.copilot-cmp")
