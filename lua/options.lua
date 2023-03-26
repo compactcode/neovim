@@ -39,9 +39,6 @@ vim.opt.swapfile = false
 -- Allow buffers to be backgrounded without saving
 vim.opt.hidden = true
 
--- Use the system clipboard.
-vim.opt.clipboard = "unnamedplus"
-
 -- ************************************************************
 -- Search
 -- ************************************************************
