@@ -13,6 +13,7 @@ end
 
 cmp.setup({
   mapping = {
+    -- Select next completion item.
     ["<Tab>"] = cmp.mapping(
       function(fallback)
         if cmp.visible() then
@@ -28,6 +29,7 @@ cmp.setup({
       { "i", "s" }
     ),
 
+    -- Select previous completion item.
     ["<S-Tab>"] = cmp.mapping(
       function()
         if cmp.visible() then
@@ -39,6 +41,7 @@ cmp.setup({
       { "i", "s" }
     ),
 
+    -- Accept current completion item.
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
   },
   snippet = {
