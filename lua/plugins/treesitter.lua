@@ -46,14 +46,14 @@ require("nvim-treesitter.configs").setup {
     move = {
       enable = true,
       goto_next_start = {
-        ["[b"] = "@block.outer",
-        ["[c"] = "@class.outer",
-        ["[f"] = "@function.outer",
-      },
-      goto_previous_start = {
         ["]b"] = "@block.outer",
         ["]c"] = "@class.outer",
         ["]f"] = "@function.outer",
+      },
+      goto_previous_start = {
+        ["[b"] = "@block.outer",
+        ["[c"] = "@class.outer",
+        ["[f"] = "@function.outer",
       },
     },
 
