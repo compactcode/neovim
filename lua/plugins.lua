@@ -1,215 +1,88 @@
-return require("packer").startup(function(use)
-  use {
-    "wbthomason/packer.nvim",
-  }
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
+    lazypath,
+  })
+end
 
-  use {
-    "windwp/nvim-autopairs",
-    config = function()
-      require("nvim-autopairs").setup()
-    end
-  }
+vim.opt.rtp:prepend(lazypath)
 
-  use {
-    "folke/which-key.nvim",
-    config = function()
-      require("plugins.which-key")
-    end
-  }
-
-  use {
+local plugins = {
+  {
     "shaunsingh/nord.nvim",
+    priority = 1000,
     config = function()
-      require("plugins.nord")
+      vim.g.nord_contrast = true
+      vim.g.nord_borders = true
+
+      require('nord').set()
     end
-  }
+  },
 
-  use {
-    "nvim-neotest/neotest",
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      "olimorris/neotest-rspec",
-      "nvim-neotest/neotest-plenary",
-    },
-    config = function()
-      require("plugins.neotest")
-    end
-  }
-
-  -- toggle single-> multiline styles of code
-  use {
-    'Wansmer/treesj',
-    requires = {
-      "nvim-treesitter/nvim-treesitter",
-      "folke/which-key.nvim",
-    },
-    config = function()
-      require('plugins.treesj')
-    end,
-  }
-
-  use {
-    "lukas-reineke/indent-blankline.nvim",
-    config = function()
-      require("plugins.indent-blankline")
-    end
-  }
-
-  use {
-    "neovim/nvim-lspconfig",
-    requires = {
-      "folke/neodev.nvim",
-      "folke/which-key.nvim",
-    },
-    config = function()
-      require("plugins.lspconfig")
-    end
-  }
-
-  use {
-    "jose-elias-alvarez/null-ls.nvim",
-    config = function()
-      require("plugins.null-ls")
-    end
-  }
-
-  use {
-    "nvim-treesitter/nvim-treesitter",
-    requires = {
-      { "nvim-treesitter/nvim-treesitter-textobjects" },
-      { "nvim-treesitter/nvim-treesitter-refactor" },
-      { "folke/which-key.nvim" },
-    },
-    config = function()
-      require("plugins.treesitter")
-    end
-  }
-
-  use {
-    "hoob3rt/lualine.nvim",
-    requires = {
-      { "shaunsingh/nord.nvim" },
-      { "nvim-tree/nvim-web-devicons" }
-    },
-    after = "nord.nvim",
-    config = function()
-      require("plugins.lualine")
-    end
-  }
-
-  use {
-    "kyazdani42/nvim-tree.lua",
-    requires = {
-      { "folke/which-key.nvim" },
-      { "nvim-tree/nvim-web-devicons" }
-    },
-    config = function()
-      require("plugins.nvim-tree")
-    end
-  }
-
-  use {
-    "hrsh7th/vim-vsnip",
-    requires = {
-      "rafamadriz/friendly-snippets",
-    },
-  }
-
-  use {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    config = function()
-      require("plugins.copilot")
-    end,
-  }
-
-  use {
-    "zbirenbaum/copilot-cmp",
-    after = { "copilot.lua" },
-    config = function ()
-      require("plugins.copilot-cmp")
-    end
-  }
-
-  use {
-    "hrsh7th/nvim-cmp",
-    requires = {
-      { "hrsh7th/cmp-nvim-lsp" },
-      { "hrsh7th/cmp-buffer" },
-      { "hrsh7th/cmp-path" },
-      { "hrsh7th/cmp-cmdline" },
-      { "hrsh7th/cmp-vsnip" },
-      { "hrsh7th/vim-vsnip" },
-      { "zbirenbaum/copilot-cmp" },
-      { "onsails/lspkind-nvim" },
-    },
-    config = function()
-      require("plugins.cmp")
-    end
-  }
-
-  use {
+  {
     "nvim-telescope/telescope.nvim",
-    requires = {
+    command = "Telescope",
+    dependencies = {
       { "nvim-lua/plenary.nvim" },
-      { "folke/which-key.nvim" },
       { "nvim-tree/nvim-web-devicons" }
     },
     config = function()
-      require("plugins.telescope")
-    end
-  }
+      local actions = require('telescope.actions')
 
-  use {
-    "numToStr/Comment.nvim",
-    requires = {
-      { "folke/which-key.nvim" },
-    },
-    config = function()
-      require("plugins.comment-nvim")
-    end
-  }
+      require('telescope').setup {
+        defaults = {
+          color_devicons = false,
+          mappings = {
+            i = {
+              ["<C-j>"] = actions.move_selection_next,
+              ["<C-k>"] = actions.move_selection_previous,
+            }
+          },
+          sorting_strategy = "ascending",
+        }
+      }
+    end,
+    keys = {
+      { "<leader>t", "<cmd>Telescope find_files<cr>", desc = "Open a file using fd" },
+      { "<leader>d", "<cmd>Telescope lsp_definitions<cr>", desc = "lsp: Goto definition" },
+      { "<leader>ff", "<cmd>Telescope oldfiles<cr>", desc = "Open a recently edited file" },
+      { "<leader>fg", "<cmd>Telescope git_files<cr>", desc = "Open a file using git ls-files" },
+      { "<leader>fs", "<cmd>Telescope live_grep<cr>", desc = "Search the project" },
+      { "<leader>fl", "<cmd>Telescope resume<cr>", desc = "Show the last search" },
+      { "<leader>fw", "<cmd>Telescope grep_string<cr>", desc = "Search the project for the current word" },
+      { "<leader>gh", "<cmd>Telescope git_bcommits<cr>", desc = "Show history for the current file" },
+      { "<leader>ld", "<cmd>Telescope lsp_definitions<cr>", desc = "Goto definition" },
+      { "<leader>ll", "<cmd>Telescope lsp_references<cr>", desc = "Find references" },
+    }
+  },
 
-  use {
-    "lewis6991/gitsigns.nvim",
-    requires = {
-      { "nvim-lua/plenary.nvim" },
-      { "folke/which-key.nvim" },
-    },
-    config = function()
-      require("plugins.gitsigns")
-    end
+  {
+    "folke/which-key.nvim",
+    config = function(_, opts)
+      local wk = require("which-key")
+      wk.setup(opts)
+      local groups = {
+        mode = { "n"},
+        ["<leader>f"] = { name = "+file" }
+      }
+      wk.register(groups)
+    end,
+    opts = {
+      plugins = {
+        spelling = {
+          enabled = false,
+        }
+      },
+      window = {
+        border = "single",
+      }
+    }
   }
+}
 
-  use {
-    "norcalli/nvim-colorizer.lua",
-    config = function()
-      require("plugins.nvim-colorizer")
-    end
-  }
-
-  use {
-    "ggandor/leap.nvim",
-    requires = {
-      { "folke/which-key.nvim" },
-    },
-    config = function()
-      require("plugins.leap")
-    end
-  }
-
-  use {
-    "tpope/vim-projectionist",
-    config = function()
-      require("plugins.projectionist")
-    end
-  }
-
-  use { "stevearc/dressing.nvim" }
-  use { "kevinhwang91/nvim-bqf" }
-  use { "slim-template/vim-slim", }
-  use { "tpope/vim-repeat", }
-  use { "tpope/vim-surround", }
-end)
+require("lazy").setup(plugins)
