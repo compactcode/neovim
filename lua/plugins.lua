@@ -57,18 +57,6 @@ return require("packer").startup(function(use)
   }
 
   use {
-    'akinsho/bufferline.nvim',
-    requires = {
-      { "shaunsingh/nord.nvim" },
-      { 'nvim-tree/nvim-web-devicons' },
-    },
-    after = "nord.nvim",
-    config = function()
-      require("plugins.bufferline")
-    end
-  }
-
-  use {
     "neovim/nvim-lspconfig",
     requires = {
       "folke/neodev.nvim",
