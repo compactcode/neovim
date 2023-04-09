@@ -14,6 +14,17 @@ vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
   {
+    "lewis6991/gitsigns.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    opts = {
+      current_line_blame = true,
+      preview_config = {
+        border = 'none',
+      },
+    },
+  },
+
+  {
     "shaunsingh/nord.nvim",
     priority = 1000,
     config = function()
@@ -21,7 +32,7 @@ local plugins = {
       vim.g.nord_borders = true
 
       require('nord').set()
-    end
+    end,
   },
 
   {
@@ -58,7 +69,7 @@ local plugins = {
       { "<leader>gh", "<cmd>Telescope git_bcommits<cr>", desc = "Show history for the current file" },
       { "<leader>ld", "<cmd>Telescope lsp_definitions<cr>", desc = "Goto definition" },
       { "<leader>ll", "<cmd>Telescope lsp_references<cr>", desc = "Find references" },
-    }
+    },
   },
 
   {
@@ -81,7 +92,7 @@ local plugins = {
       window = {
         border = "single",
       }
-    }
+    },
   }
 }
 
