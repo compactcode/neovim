@@ -13,6 +13,20 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
+  -- indentation decorations
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    event = { "BufReadPost", "BufNewFile" },
+    opts = {
+      show_current_context = true,
+      show_current_context_start = false,
+      show_end_of_line = false,
+      show_trailing_blankline_indent = false,
+      show_first_indent_level = false,
+    },
+  },
+
+  -- git decorations
   {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPre", "BufNewFile" },
@@ -24,6 +38,7 @@ local plugins = {
     },
   },
 
+  -- colorscheme
   {
     "shaunsingh/nord.nvim",
     priority = 1000,
@@ -35,6 +50,7 @@ local plugins = {
     end,
   },
 
+  -- finder, picker & sorter
   {
     "nvim-telescope/telescope.nvim",
     command = "Telescope",
@@ -72,6 +88,14 @@ local plugins = {
     },
   },
 
+  -- syntax parsing
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    event = { "BufReadPost", "BufNewFile" },
+  },
+
+  -- keybinding ui
   {
     "folke/which-key.nvim",
     config = function(_, opts)
