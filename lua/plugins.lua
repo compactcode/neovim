@@ -26,6 +26,7 @@ local plugins = {
     },
   },
 
+  -- status line
   {
     "hoob3rt/lualine.nvim",
     dependencies = {
@@ -107,6 +108,34 @@ local plugins = {
       { "<leader>gh", "<cmd>Telescope git_bcommits<cr>", desc = "Show history for the current file" },
       { "<leader>ld", "<cmd>Telescope lsp_definitions<cr>", desc = "Goto definition" },
       { "<leader>ll", "<cmd>Telescope lsp_references<cr>", desc = "Find references" },
+    },
+  },
+
+  -- file browser
+  {
+    "kyazdani42/nvim-tree.lua",
+    dependencies = {
+      { "nvim-tree/nvim-web-devicons" }
+    },
+    opts = {
+      renderer = {
+        icons = {
+          webdev_colors = false,
+          show = {
+            file = true,
+            folder = true,
+            folder_arrow = true,
+            git = false,
+          },
+        },
+      },
+      view = {
+        adaptive_size = true,
+      },
+    },
+    keys = {
+      { "<leader>fb", "<cmd>NvimTreeToggle<cr>", desc = "Browse files" },
+      { "<leader>fo", "<cmd>NvimTreeFindFile<cr>", desc = "Browse path of the current file" },
     },
   },
 
