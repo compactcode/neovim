@@ -31,7 +31,7 @@ local plugins = {
     "hoob3rt/lualine.nvim",
     dependencies = {
       { "shaunsingh/nord.nvim" },
-      { "nvim-tree/nvim-web-devicons" }
+      { "nvim-tree/nvim-web-devicons" },
     },
     opts = {
       options = {
@@ -79,7 +79,7 @@ local plugins = {
     command = "Telescope",
     dependencies = {
       { "nvim-lua/plenary.nvim" },
-      { "nvim-tree/nvim-web-devicons" }
+      { "nvim-tree/nvim-web-devicons" },
     },
     config = function()
       local actions = require('telescope.actions')
@@ -128,7 +128,7 @@ local plugins = {
   {
     "nvim-tree/nvim-tree.lua",
     dependencies = {
-      { "nvim-tree/nvim-web-devicons" }
+      { "nvim-tree/nvim-web-devicons" },
     },
     opts = {
       renderer = {
@@ -156,7 +156,7 @@ local plugins = {
   {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
-      { "nvim-treesitter/nvim-treesitter-textobjects" }
+      { "nvim-treesitter/nvim-treesitter-textobjects" },
     },
     event = { "BufReadPost", "BufNewFile" },
     config = function(_, opts)
@@ -200,6 +200,39 @@ local plugins = {
         },
       },
     },
+  },
+
+   -- auto completion
+  {
+    "hrsh7th/nvim-cmp",
+    version = false,
+    event = "InsertEnter",
+    dependencies = {
+      { "hrsh7th/cmp-buffer" },
+      { "hrsh7th/cmp-path" },
+      { "onsails/lspkind-nvim" },
+    },
+    opts = function()
+      local cmp = require("cmp")
+      local defaults = require("cmp.config.default")()
+      return {
+        completion = {
+          completeopt = "menu,menuone,noinsert",
+        },
+        mapping = cmp.mapping.preset.insert({
+          ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+          ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+          ["<C-Space>"] = cmp.mapping.complete(),
+          ["<C-e>"] = cmp.mapping.abort(),
+          ["<CR>"] = cmp.mapping.confirm({ select = true }),
+        }),
+        sources = cmp.config.sources({
+          { name = "buffer" },
+          { name = "path" },
+        }),
+        sorting = defaults.sorting,
+      }
+    end,
   },
 
   -- keybinding ui
