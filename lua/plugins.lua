@@ -113,7 +113,7 @@ local plugins = {
 
   -- file browser
   {
-    "kyazdani42/nvim-tree.lua",
+    "nvim-tree/nvim-tree.lua",
     dependencies = {
       { "nvim-tree/nvim-web-devicons" }
     },
@@ -142,7 +142,6 @@ local plugins = {
   -- syntax parsing
   {
     "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
   },
 
