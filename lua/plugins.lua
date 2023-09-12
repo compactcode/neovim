@@ -172,6 +172,7 @@ local plugins = {
         "lua",
         "markdown",
         "nix",
+        "python",
         "ruby",
         "rust",
         "scss",
@@ -210,6 +211,7 @@ local plugins = {
     dependencies = {
       { "hrsh7th/cmp-buffer" },
       { "hrsh7th/cmp-path" },
+      { "zbirenbaum/copilot-cmp" },
       { "onsails/lspkind-nvim" },
     },
     opts = function()
@@ -219,6 +221,13 @@ local plugins = {
         completion = {
           completeopt = "menu,menuone,noinsert",
         },
+        formatting = {
+          format = require("lspkind").cmp_format({
+            mode = "symbol",
+            max_width = 50,
+            symbol_map = { Copilot = "" }
+          }),
+        },
         mapping = cmp.mapping.preset.insert({
           ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
           ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -227,12 +236,40 @@ local plugins = {
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
         }),
         sources = cmp.config.sources({
+          { name = "copilot" },
           { name = "buffer" },
           { name = "path" },
         }),
         sorting = defaults.sorting,
       }
     end,
+  },
+
+  -- auto completion
+  {
+    "zbirenbaum/copilot-cmp",
+    config = function ()
+      require("copilot_cmp").setup()
+    end
+  },
+
+  -- auto completion
+  {
+    "zbirenbaum/copilot.lua",
+    command = "Copilot",
+    event = { "InsertEnter" },
+    opts = {
+      panel = {
+        enabled = false,
+      },
+      suggestion = {
+        enabled = false,
+      },
+      filetypes = {
+        gitcommit = false,
+        gitrebase = false,
+      },
+    },
   },
 
   -- keybinding ui
