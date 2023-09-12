@@ -142,7 +142,51 @@ local plugins = {
   -- syntax parsing
   {
     "nvim-treesitter/nvim-treesitter",
+    dependencies = {
+      { "nvim-treesitter/nvim-treesitter-textobjects" }
+    },
     event = { "BufReadPost", "BufNewFile" },
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
+    end,
+    opts = {
+      ensure_installed = {
+        "bash",
+        "css",
+        "html",
+        "javascript",
+        "json",
+        "lua",
+        "markdown",
+        "nix",
+        "ruby",
+        "rust",
+        "scss",
+        "typescript",
+        "yaml",
+      },
+
+      highlight = {
+        enable = true,
+        custom_captures = {
+          ["symbol"] = "TSVariable",
+        },
+      },
+
+      indent = {
+        enable = true
+      },
+
+      textobjects = {
+        lsp_interop = {
+          enable = true,
+          border = "none",
+          peek_definition_code = {
+            ["<leader>p"] = "@function.outer",
+          },
+        },
+      },
+    },
   },
 
   -- keybinding ui
