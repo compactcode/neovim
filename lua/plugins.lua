@@ -272,6 +272,28 @@ local plugins = {
     },
   },
 
+  -- lsp
+  {
+    "neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      { "folke/neodev.nvim", opts = {} },
+    },
+    config = function()
+      local lsp = require('lspconfig')
+
+      lsp.rust_analyzer.setup {}
+      lsp.solargraph.setup {}
+      lsp.lua_ls.setup {}
+    end,
+    keys = {
+      { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "List code actions" },
+      { "<leader>lf", "<cmd>lua vim.lsp.buf.format()<cr>", desc = "Format file" },
+      { "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "Rename" },
+      { "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<cr>", desc = "Show signature" },
+    },
+  },
+
   -- keybinding ui
   {
     "folke/which-key.nvim",
@@ -280,7 +302,8 @@ local plugins = {
       wk.setup(opts)
       local groups = {
         mode = { "n"},
-        ["<leader>f"] = { name = "+file" }
+        ["<leader>f"] = { name = "+file" },
+        ["<leader>l"] = { name = "+lsp" },
       }
       wk.register(groups)
     end,
