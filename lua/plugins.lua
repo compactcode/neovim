@@ -210,9 +210,11 @@ local plugins = {
     event = "InsertEnter",
     dependencies = {
       { "hrsh7th/cmp-buffer" },
+      { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-path" },
-      { "zbirenbaum/copilot-cmp" },
       { "onsails/lspkind-nvim" },
+      { "saadparwaiz1/cmp_luasnip" },
+      { "zbirenbaum/copilot-cmp" },
     },
     opts = function()
       local cmp = require("cmp")
@@ -235,8 +237,15 @@ local plugins = {
           ["<C-e>"] = cmp.mapping.abort(),
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
         }),
+        snippet = {
+          expand = function(args)
+            require("luasnip").lsp_expand(args.body)
+          end,
+        },
         sources = cmp.config.sources({
           { name = "copilot" },
+          { name = "nvim_lsp" },
+          { name = "luasnip" },
           { name = "buffer" },
           { name = "path" },
         }),
@@ -269,6 +278,28 @@ local plugins = {
         gitcommit = false,
         gitrebase = false,
       },
+    },
+  },
+
+  {
+    "l3mon4d3/LuaSnip",
+    dependencies = {
+      "rafamadriz/friendly-snippets",
+      config = function()
+        require("luasnip.loaders.from_vscode").lazy_load()
+      end,
+    },
+    version = "2.*",
+    keys = {
+      {
+        "<tab>",
+        function()
+          return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
+        end,
+        expr = true, silent = true, mode = "i",
+      },
+      { "<tab>", function() require("luasnip").jump(1) end, mode = "s" },
+      { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
     },
   },
 
