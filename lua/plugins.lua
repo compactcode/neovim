@@ -203,6 +203,12 @@ local plugins = {
     },
   },
 
+  -- syntax parsing
+  {
+    "slim-template/vim-slim",
+    ft = { "slim" },
+  },
+
    -- auto completion
   {
     "hrsh7th/nvim-cmp",
