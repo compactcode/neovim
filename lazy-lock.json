@@ -14,6 +14,8 @@
   "lspkind-nvim": { "branch": "master", "commit": "57610d5ab560c073c465d6faf0c19f200cb67e6e" },
   "lualine.nvim": { "branch": "master", "commit": "45e27ca739c7be6c49e5496d14fcf45a303c3a63" },
   "neodev.nvim": { "branch": "main", "commit": "1c796d3240c1fe6f0e1228fc7ef2ae4cef31dfea" },
+  "neotest": { "branch": "master", "commit": "1e67a504d03def3a6a1125d934cb511680f72555" },
+  "neotest-rspec": { "branch": "main", "commit": "51a3b866d85733d2df2c6b5a16d75ce6ed2fbade" },
   "nord.nvim": { "branch": "master", "commit": "15fbfc38a83980b93e169b32a1bf64757f1e2bf4" },
   "nvim-cmp": { "branch": "main", "commit": "5dce1b778b85c717f6614e3f4da45e9f19f54435" },
   "nvim-lspconfig": { "branch": "master", "commit": "360a895125ac4f39df6aa8f763635eff07e69fff" },

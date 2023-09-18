@@ -287,6 +287,7 @@ local plugins = {
     },
   },
 
+  -- snippets
   {
     "l3mon4d3/LuaSnip",
     dependencies = {
@@ -333,6 +334,33 @@ local plugins = {
 
   -- keybinding ui
   {
+    "nvim-neotest/neotest",
+    dependencies = {
+      { "olimorris/neotest-rspec" },
+      { "nvim-lua/plenary.nvim" },
+      { "nvim-treesitter/nvim-treesitter" },
+    },
+    keys = {
+        name = "+test",
+      { "<leader>rl", "<cmd>lua require('neotest').run.run()<cr>", desc = "Run nearest to line" },
+      { "<leader>ro", "<cmd>lua require('neotest').output.open()<cr>", desc = "Display output" },
+      { "<leader>rr", "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", desc = "Run entire file" },
+      { "<leader>rs", "<cmd>lua require('neotest').summary.toggle()<cr>", desc = "Display summary" },
+      { "!", "<cmd>lua require('neotest').run.run_last()<cr>", desc = "Re-run last test" },
+    },
+    opts = {
+      adapters = {
+        require("neotest-plenary"),
+        require("neotest-rspec"),
+      },
+      quickfix = {
+        enabled = false,
+      },
+    },
+  },
+
+  -- keybinding ui
+  {
     "folke/which-key.nvim",
     event = "VeryLazy",
     config = function(_, opts)
@@ -342,6 +370,7 @@ local plugins = {
         mode = { "n"},
         ["<leader>f"] = { name = "+file" },
         ["<leader>l"] = { name = "+lsp" },
+        ["<leader>r"] = { name = "+test" },
       }
       wk.register(groups)
     end,
