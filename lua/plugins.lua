@@ -17,12 +17,20 @@ local plugins = {
   {
     "lukas-reineke/indent-blankline.nvim",
     event = { "BufReadPost", "BufNewFile" },
+    main = "ibl",
     opts = {
-      show_current_context = true,
-      show_current_context_start = false,
-      show_end_of_line = false,
-      show_trailing_blankline_indent = false,
-      show_first_indent_level = false,
+      scope = {
+        enabled = true,
+        show_start = false,
+        show_end = false,
+      },
+      exclude = {
+        filetypes = {
+          "help",
+          "neo-tree",
+          "lazy",
+        },
+      },
     },
   },
 
