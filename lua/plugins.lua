@@ -184,6 +184,7 @@ local plugins = {
         "ruby",
         "rust",
         "scss",
+        "terraform",
         "typescript",
         "yaml",
       },
