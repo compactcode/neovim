@@ -90,6 +90,15 @@ local plugins = {
     end
   },
 
+  -- automatic pair insertion
+  {
+    "echasnovski/mini.pairs",
+    version = false,
+    config = function()
+      require("mini.pairs").setup()
+    end
+  },
+
   -- finder, picker & sorter
   {
     "nvim-telescope/telescope.nvim",
