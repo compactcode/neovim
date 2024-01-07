@@ -81,12 +81,12 @@ local plugins = {
     end,
   },
 
-  -- surround actions
+  -- comment toggling
   {
-    "echasnovski/mini.surround",
+    "echasnovski/mini.comment",
     version = false,
     config = function()
-      require("mini.surround").setup()
+      require("mini.comment").setup()
     end
   },
 
@@ -96,6 +96,15 @@ local plugins = {
     version = false,
     config = function()
       require("mini.pairs").setup()
+    end
+  },
+
+  -- surround actions
+  {
+    "echasnovski/mini.surround",
+    version = false,
+    config = function()
+      require("mini.surround").setup()
     end
   },
 
