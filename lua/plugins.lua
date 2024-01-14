@@ -81,6 +81,15 @@ local plugins = {
     end,
   },
 
+  -- align text
+  {
+    "echasnovski/mini.align",
+    version = false,
+    config = function()
+      require("mini.align").setup()
+    end
+  },
+
   -- comment toggling
   {
     "echasnovski/mini.comment",
