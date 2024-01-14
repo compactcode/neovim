@@ -372,11 +372,16 @@ local plugins = {
       { "folke/neodev.nvim", opts = {} },
     },
     config = function()
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
       local lsp = require('lspconfig')
 
-      lsp.rust_analyzer.setup {}
-      lsp.solargraph.setup {}
-      lsp.lua_ls.setup {}
+      lsp.solargraph.setup {
+        capabilities = capabilities,
+      }
+      lsp.lua_ls.setup {
+        capabilities = capabilities,
+      }
     end,
     keys = {
       { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "List code actions" },
