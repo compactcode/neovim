@@ -376,7 +376,7 @@ local plugins = {
 
       local lsp = require('lspconfig')
 
-      lsp.solargraph.setup {
+      lsp.ruby_ls.setup {
         capabilities = capabilities,
       }
       lsp.lua_ls.setup {
