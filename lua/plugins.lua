@@ -231,6 +231,7 @@ local plugins = {
         "scss",
         "terraform",
         "typescript",
+        "vimdoc",
         "yaml",
       },
 
