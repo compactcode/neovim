@@ -44,15 +44,15 @@ local plugins = {
     opts = {
       options = {
         icons_enabled = true,
-        component_separators = {'|', '|'},
+        component_separators = { '|', '|' },
       },
       sections = {
-        lualine_a = {'mode'},
-        lualine_b = {'branch'},
-        lualine_c = {{'filename', file_status = true, path = 1}},
-        lualine_x = {'encoding', 'fileformat', {'filetype', colored = false}},
-        lualine_y = {'progress'},
-        lualine_z = {'location'},
+        lualine_a = { 'mode' },
+        lualine_b = { 'branch' },
+        lualine_c = { { 'filename', file_status = true, path = 1 } },
+        lualine_x = { 'encoding', 'fileformat', { 'filetype', colored = false } },
+        lualine_y = { 'progress' },
+        lualine_z = { 'location' },
       },
     },
   },
@@ -269,7 +269,7 @@ local plugins = {
     ft = { "slim" },
   },
 
-   -- auto completion
+  -- auto completion
   {
     "hrsh7th/nvim-cmp",
     version = false,
@@ -323,7 +323,7 @@ local plugins = {
   -- auto completion
   {
     "zbirenbaum/copilot-cmp",
-    config = function ()
+    config = function()
       require("copilot_cmp").setup()
     end
   },
@@ -406,7 +406,7 @@ local plugins = {
       { "nvim-treesitter/nvim-treesitter" },
     },
     keys = {
-        name = "+test",
+      name = "+test",
       { "<leader>rl", "<cmd>lua require('neotest').run.run()<cr>", desc = "Run nearest to line" },
       { "<leader>ro", "<cmd>lua require('neotest').output.open()<cr>", desc = "Display output" },
       { "<leader>rr", "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", desc = "Run entire file" },
@@ -431,7 +431,7 @@ local plugins = {
     config = function(_, opts) local wk = require("which-key")
       wk.setup(opts)
       local groups = {
-        mode = { "n"},
+        mode = { "n" },
         ["<leader>f"] = { name = "+file" },
         ["<leader>l"] = { name = "+lsp" },
         ["<leader>r"] = { name = "+test" },
