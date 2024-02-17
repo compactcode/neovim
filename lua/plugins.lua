@@ -390,6 +390,7 @@ local plugins = {
       }
     end,
     keys = {
+      { "<leader>a", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "List code actions" },
       { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "List code actions" },
       { "<leader>lf", "<cmd>lua vim.lsp.buf.format()<cr>", desc = "Format file" },
       { "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "Rename" },
@@ -402,16 +403,26 @@ local plugins = {
     "nvimtools/none-ls.nvim",
     dependencies = {
       { "nvim-lua/plenary.nvim" },
+      { "ckolkey/ts-node-action" },
     },
     config = function()
       local null_ls = require("null-ls")
 
       local sources = {
-        null_ls.builtins.code_actions.gitsigns,
+        null_ls.builtins.code_actions.ts_node_action,
       }
 
       null_ls.setup({ sources = sources })
     end,
+  },
+
+  -- refactoring actions
+  {
+    "ckolkey/ts-node-action",
+    dependencies = {
+      { "nvim-treesitter" },
+    },
+    opts = {},
   },
 
   -- test runner
