@@ -69,6 +69,11 @@ local plugins = {
     },
   },
 
+  -- ui improvements
+  {
+    'stevearc/dressing.nvim',
+  },
+
   -- colorscheme
   {
     "shaunsingh/nord.nvim",
